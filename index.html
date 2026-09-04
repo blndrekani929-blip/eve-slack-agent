@@ -1,0 +1,155 @@
+
+<!DOCTYPE html>
+<html lang="ku" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tik Tok Kurdi</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- سەرپەڕێ بەرنامەی -->
+    <div class="header">
+        <h2>Tik Tok Kurdi</h2>
+    </div>
+
+    <!-- کانتێنەرێ ڤیدیۆیان -->
+    <div class="app-videos">
+        
+        <!-- ڤیدیۆیا ئێکێ -->
+        <div class="video-container">
+            <video class="video-player" src="video1.mp4" loop onclick="playPause(this)"></video>
+            <div class="side-bar">
+                <button onclick="likeVideo(this)">❤️ <span>0</span></button>
+                <button>💬 <span>0</span></button>
+                <button>↪️ <span>بەلاڤکرن</span></button>
+            </div>
+            <div class="video-info">
+                <h3>@kurdish_user</h3>
+                <p>بەحسکرنا بابەتی ل ڤێرێ... #kurdistan #badini</p>
+            </div>
+        </div>
+
+        <!-- ڤیدیۆیا دووێ -->
+        <div class="video-container">
+            <video class="video-player" src="video2.mp4" loop onclick="playPause(this)"></video>
+            <div class="side-bar">
+                <button onclick="likeVideo(this)">❤️ <span>0</span></button>
+                <button>💬 <span>0</span></button>
+                <button>↪️ <span>بەلاڤکرن</span></button>
+            </div>
+            <div class="video-info">
+                <h3>@duhok_official</h3>
+                <p>بەحسکرنا دیزاینێ ئینتەرنێتێ... #duhok</p>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: black;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.header {
+    position: absolute;
+    top: 10px;
+    z-index: 10;
+    color: #00f2fe;
+    text-shadow: 2px 2px #ff0050;
+}
+
+.app-videos {
+    width: 100%;
+    max-width: 400px;
+    height: 100vh;
+    background-color: #000;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+}
+
+/* ەشارتنا Scrollbar */
+.app-videos::-webkit-scrollbar {
+    display: none;
+}
+
+.video-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    scroll-snap-align: start;
+}
+
+.video-player {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.side-bar {
+    position: absolute;
+    bottom: 80px;
+    left: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.side-bar button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.video-info {
+    position: absolute;
+    bottom: 20px;
+    right: 15px;
+    max-width: 80%;
+}
+
+.video-info h3 {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.video-info p {
+    font-size: 14px;
+}
+// کارکرنا ڤیدیۆیێ ب کلیککرنێ (Play/Pause)
+function playPause(video) {
+    if (video.paused) {
+        video.play();
+    } else {
+        video.pause();
+    }
+}
+
+// دۆگمێ لایککرنێ
+function likeVideo(button) {
+    let span = button.querySelector('span');
+    let currentLikes = parseInt(span.innerText);
+    span.innerText = currentLikes + 1;
+    button.style.color = "#ff0050";
+}
